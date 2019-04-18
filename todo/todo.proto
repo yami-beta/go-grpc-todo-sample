@@ -1,6 +1,8 @@
 syntax = "proto3";
 package todo;
 
+import "google/api/annotations.proto";
+
 message Todo {
   int32 id = 1;
   string text = 2;
@@ -13,5 +15,9 @@ message ListTodoResponse {
 }
 
 service TodoService {
-  rpc ListTodo (ListTodoRequest) returns (ListTodoResponse);
+  rpc ListTodo (ListTodoRequest) returns (ListTodoResponse) {
+    option (google.api.http) = {
+      get: "/todos"
+    };
+  }
 }
